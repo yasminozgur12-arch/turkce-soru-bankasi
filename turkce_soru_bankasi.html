@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5. Sınıf Türkçe Soru Bankası | Maarif Modeli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF8E7;
+    --ink: #1F2937;
+    --ink-soft: #4B5563;
+    --paper: #FFFFFF;
+    --primary: #FF6B6B;
+    --primary-dark: #E63946;
+    --secondary: #4ECDC4;
+    --accent: #FFD93D;
+    --purple: #A78BFA;
+    --green: #6BCB77;
+    --easy: #6BCB77;
+    --medium: #FFA94D;
+    --hard: #FF6B6B;
+    --shadow: rgba(31, 41, 55, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    background-image: 
+      radial-gradient(circle at 20% 10%, rgba(255, 217, 61, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(78, 205, 196, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.08) 0%, transparent 50%);
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  header {
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+    position: relative;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--accent);
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 6vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 .accent {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--primary);
+  }
+
+  .subtitle {
+    color: var(--ink-soft);
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .doodle {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.4;
+    pointer-events: none;
+    animation: float 4s ease-in-out infinite;
+  }
+  .doodle.d1 { top: 1rem; left: 5%; animation-delay: 0s; }
+  .doodle.d2 { top: 3rem; right: 8%; animation-delay: 1s; }
+  .doodle.d3 { top: 8rem; left: 12%; animation-delay: 2s; font-size: 2rem; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+  }
+
+  /* CONTAINER */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  /* PROGRESS */
+  .progress-card {
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem auto;
+    max-width: 800px;
+    box-shadow: 5px 5px 0 var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .progress-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .progress-stat .num {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+  }
+  .progress-stat.green .num { color: var(--green); }
+  .progress-stat.yellow .num { color: var(--medium); }
+
+  .reset-btn {
+    margin-left: auto;
+    background: transparent;
+    border: 2px solid var(--ink);
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { background: var(--ink); color: var(--accent); }
+
+  /* KAZANIM GRID */
+  .kazanim-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .kazanim-card {
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 5px 5px 0 var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kazanim-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 var(--ink);
+  }
+
+  .kazanim-card.completed {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  }
+
+  .kazanim-card.completed::after {
+    content: '✓';
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 28px;
+    height: 28px;
+    background: var(--green);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1rem;
+  }
+
+  .kazanim-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--paper);
+    background: var(--ink);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    margin-bottom: 0.5rem;
+  }
+  .kazanim-card[data-area="okuma"] .kazanim-tag { background: var(--primary); }
+  .kazanim-card[data-area="dinleme"] .kazanim-tag { background: var(--purple); }
+  .kazanim-card[data-area="konusma"] .kazanim-tag { background: var(--secondary); }
+  .kazanim-card[data-area="yazma"] .kazanim-tag { background: var(--medium); }
+
+  .kazanim-code {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .kazanim-title {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(31, 41, 55, 0.6);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 100;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: var(--bg);
+    max-width: 700px;
+    width: 100%;
+    border: 3px solid var(--ink);
+    border-radius: 24px;
+    padding: 1.75rem;
+    margin: 2rem 0;
+    box-shadow: 8px 8px 0 var(--ink);
+    position: relative;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+  .close-btn:hover { background: var(--primary); color: white; }
+
+  .modal-header {
+    border-bottom: 2px dashed var(--ink-soft);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-code {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+  }
+
+  .modal-title {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+  }
+
+  /* QUESTION CARD */
+  .question {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .difficulty-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    color: white;
+    margin-bottom: 0.75rem;
+  }
+  .difficulty-tag.easy { background: var(--easy); }
+  .difficulty-tag.medium { background: var(--medium); }
+  .difficulty-tag.hard { background: var(--hard); }
+
+  .question-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    white-space: pre-line;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .option {
+    background: #FAFAFA;
+    border: 2px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.95rem;
+    transition: all 0.15s;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+
+  .btn {
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.hint { background: var(--accent); }
+  .btn.answer { background: var(--secondary); color: var(--ink); }
+  .btn.done { background: var(--green); color: white; }
+  .btn.done.active { background: var(--ink); color: var(--accent); }
+
+  .reveal {
+    margin-top: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    display: none;
+    animation: slideDown 0.3s ease;
+  }
+  .reveal.show { display: block; }
+  .reveal.hint-box { background: #FFF3CD; border: 2px solid var(--accent); }
+  .reveal.answer-box { background: #D1ECF1; border: 2px solid var(--secondary); }
+  .reveal strong { font-weight: 700; }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* FILTER BAR */
+  .filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+  .filter-btn {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-btn.active {
+    background: var(--ink);
+    color: var(--accent);
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+  }
+  footer strong { font-family: 'Fraunces', serif; color: var(--primary); }
+
+  @media (max-width: 600px) {
+    .modal { padding: 1.25rem; }
+    .progress-card { font-size: 0.8rem; }
+    .progress-stat .num { font-size: 1.2rem; }
+    .doodle { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="doodle d1">📚</div>
+  <div class="doodle d2">✏️</div>
+  <div class="doodle d3">🎈</div>
+  <span class="badge">Türkiye Yüzyılı Maarif Modeli</span>
+  <h1>5. Sınıf Türkçe<br><span class="accent">Soru Bankası</span></h1>
+  <p class="subtitle">Öğrenme çıktısı seç, sorulara çöz, eğlenerek öğren! 🚀</p>
+</header>
+
+<div class="container">
+
+  <div class="progress-card">
+    <div class="progress-stat">
+      <span class="num" id="totalCount">0</span>
+      <span>Toplam Çıktı</span>
+    </div>
+    <div class="progress-stat green">
+      <span class="num" id="doneCount">0</span>
+      <span>Tamamlanan</span>
+    </div>
+    <div class="progress-stat yellow">
+      <span class="num" id="percentCount">0%</span>
+      <span>İlerleme</span>
+    </div>
+    <button class="reset-btn" onclick="resetProgress()">↺ Sıfırla</button>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterArea('all', this)">Tümü</button>
+    <button class="filter-btn" onclick="filterArea('okuma', this)">📖 Okuma</button>
+    <button class="filter-btn" onclick="filterArea('dinleme', this)">👂 Dinleme</button>
+    <button class="filter-btn" onclick="filterArea('konusma', this)">💬 Konuşma</button>
+    <button class="filter-btn" onclick="filterArea('yazma', this)">✍️ Yazma</button>
+  </div>
+
+  <div class="kazanim-grid" id="kazanimGrid"></div>
+</div>
+
+<footer>
+  <p>Hazırlayan: <strong>@jasmin.eduflow</strong> · Müfredat: 2025-2026 MEB Maarif Modeli</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script>
+// ============= SORU BANKASI =============
+const KAZANIMLAR = [
+  // ============ OKUMA ============
+  {
+    code: "T.O.5.5",
+    area: "okuma",
+    areaLabel: "OKUMA",
+    title: "Anlamını bilmediği kelimelerin anlamını tahmin edebilme",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "Aşağıdaki cümlede altı çizili kelimenin anlamı nedir?\n\n«Bahçedeki kuru yapraklar rüzgârla SAVRULDU.»\n\nA) Tek tek düştü\nB) Hızla dağıldı\nC) Toplandı\nD) Yere yapıştı",
+        hint: "Rüzgâr kuvvetli estiğinde yapraklar nasıl hareket eder? Cümlede 'rüzgârla' kelimesi ipucu veriyor.",
+        answer: "✅ Doğru cevap: B) Hızla dağıldı\n\n«Savrulmak», bir şeyin rüzgâr veya başka bir kuvvetle hızlıca her yöne dağılması demektir. Cümledeki «rüzgârla» ifadesi bize ipucu verir."
+      },
+      {
+        difficulty: "medium",
+        text: "«Annem bugün çok NEŞELİ görünüyor.» cümlesindeki «neşeli» kelimesinin anlamı aşağıdakilerden hangisinde aynıdır?\n\nA) Üzgün bir çocuk parkta oturuyordu.\nB) Mutlu bir öğrenci sınıfa girdi.\nC) Yorgun bir işçi eve döndü.\nD) Hasta bir kuş kafeste duruyor.",
+        hint: "«Neşeli» kelimesi sevinçli, hoş bir hâli anlatır. Hangi seçenekte buna en yakın bir kelime var?",
+        answer: "✅ Doğru cevap: B) Mutlu bir öğrenci sınıfa girdi.\n\n«Neşeli» = «mutlu, sevinçli» anlamına gelir. İkisi de aynı duyguyu anlatan kelimelerdir. Buna eş anlamlı kelimeler diyoruz."
+      },
+      {
+        difficulty: "hard",
+        text: "Aşağıdaki paragrafı oku ve «MÜTHİŞ» kelimesinin anlamını tahmin et:\n\n«Maçın son dakikasında kalecimiz MÜTHİŞ bir kurtarış yaptı. Topu havada yakaladı, herkes ayağa kalktı, tribünler alkıştan yıkıldı.»\n\nKısaca açıkla: Bu cümlede «müthiş» ne anlama geliyor? Hangi ipuçlarından anladın?",
+        hint: "Cümlenin devamına bak: insanlar nasıl tepki verdi? Bu tepki sıradan bir şey için olur mu?",
+        answer: "✅ Beklenen cevap:\n«Müthiş» burada «çok başarılı, harika, olağanüstü» anlamına gelir.\n\nİpuçları:\n• «Herkes ayağa kalktı»\n• «Tribünler alkıştan yıkıldı»\n• «Topu havada yakaladı»\n\nBu tepkiler ancak çok iyi bir şey karşısında verilir. Yani «müthiş» olumlu ve güçlü bir kelimedir.\n\n💡 Günlük hayatta: Annenin yaptığı pasta için «müthiş olmuş!» dediğinde de aynı anlamda kullanırsın."
+      }
+    ]
+  },
+  {
+    code: "T.O.5.6",
+    area: "okuma",
+    areaLabel: "OKUMA",
+    title: "Metnin yüzey anlamını belirleyebilme",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "Metni oku:\n\n«Ali sabah erken kalktı. Kahvaltısını yaptı, çantasını hazırladı ve okula gitti. Sınıfta arkadaşı Mehmet'le buluştu. İlk dersleri matematikti.»\n\nAli okula gitmeden önce ne yaptı?\n\nA) Mehmet ile buluştu\nB) Matematik dersi gördü\nC) Kahvaltı yaptı ve çantasını hazırladı\nD) Erken yattı",
+        hint: "Soru «okula gitmeden önce» diyor. Sıralamaya dikkat et!",
+        answer: "✅ Doğru cevap: C) Kahvaltı yaptı ve çantasını hazırladı\n\nMetinde sıralama açık: «kahvaltısını yaptı → çantasını hazırladı → okula gitti». Mehmet ile buluşmak ve matematik dersi okula gittikten sonra olan şeyler."
+      },
+      {
+        difficulty: "medium",
+        text: "Aşağıdaki metni oku ve sorulara cevap ver:\n\n«Köpekler insanın en sadık dostudur. Sahibini tanır, ona zarar verenleri uzaklaştırmaya çalışır. Eski Mısır'da köpekler kutsal sayılırdı. Bugün hâlâ köpekler polise, çobanlara ve görme engellilere yardım ediyor.»\n\n1. Köpekler eski Mısır'da nasıl görülürdü?\n2. Köpekler bugün hangi üç gruba yardım ediyor?",
+        hint: "Cevaplar metnin içinde aynen yazıyor. Dikkatlice tara!",
+        answer: "✅ Cevaplar:\n\n1. Köpekler eski Mısır'da KUTSAL sayılırdı.\n\n2. Köpekler bugün:\n   • Polise\n   • Çobanlara\n   • Görme engellilere\nyardım ediyor.\n\nBunlara «yüzey anlamlı bilgi» denir, çünkü metinde doğrudan yazılıdır."
+      },
+      {
+        difficulty: "hard",
+        text: "Metni oku:\n\n«Ahmet okul kantinine girdi. Cebindeki 20 lirayı saydı. Önce bir simit aldı (5 lira), sonra arkadaşı Burak'a ayran ısmarladı (8 lira). Çıkarken bir defter görüp aldı. Geri 2 lira kaldı.»\n\nAhmet kantinde TOPLAM kaç lira harcadı? Defter kaç liraydı? Cevabını işlemle göster.",
+        hint: "Önce başta kaç lirası vardı? Sonunda kaç lirası kaldı? Aradaki fark toplam harcamayı verir. Sonra simit + ayran çıkarınca defter çıkar.",
+        answer: "✅ Çözüm:\n\n• Başta: 20 lira\n• Sonda: 2 lira\n• TOPLAM HARCAMA = 20 - 2 = 18 lira\n\n• Simit: 5 lira\n• Ayran: 8 lira\n• Bilinenler toplamı: 5 + 8 = 13 lira\n\n• DEFTER = 18 - 13 = 5 lira\n\n💡 Günlük hayat bağlantısı: Markete gittiğinde aldığın şeylerin fiyatlarını toplayarak ne kadar harcadığını hesaplayabilirsin. Para yönetimi böyle başlar!"
+      }
+    ]
+  },
+  {
+    code: "T.O.5.8",
+    area: "okuma",
+    areaLabel: "OKUMA",
+    title: "Metnin derin anlamını belirlemeye yönelik basit çıkarımlar yapabilme",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "Metni oku:\n\n«Defne sınıfa girdiğinde gözleri kızarmıştı. Çantasını sessizce sırasına bıraktı, kimse ile konuşmadı. Öğretmen 'iyi misin?' diye sordu, başını salladı ama yere bakıyordu.»\n\nDefne büyük ihtimalle nasıl hissediyor?\n\nA) Mutlu\nB) Üzgün\nC) Heyecanlı\nD) Sinirli",
+        hint: "«Gözleri kızarmıştı», «sessizce», «yere bakıyordu» — bu ifadeler sana hangi duyguyu çağrıştırıyor?",
+        answer: "✅ Doğru cevap: B) Üzgün\n\nMetinde Defne'nin üzgün olduğu DOĞRUDAN yazmıyor — ama ipuçları var:\n• Kızarık gözler (ağlamış olabilir)\n• Sessizlik\n• Yere bakmak\n\nBu ipuçlarından anlam çıkarmaya «çıkarım yapma» denir."
+      },
+      {
+        difficulty: "medium",
+        text: "Metni oku:\n\n«Pencereden dışarı baktım. Ağaçlar sallanıyor, insanlar şemsiyelerini açmaya çalışıyordu. Kediler hızla saçak altına kaçıştı. Karanlık bulutlar gökyüzünü kapladı.»\n\nMetinde HAVA DURUMU hakkında ne çıkarım yapabilirsin? Cevabını metindeki en az 2 ipucuyla destekle.",
+        hint: "Yağmur, fırtına, rüzgâr... insanlar ve hayvanlar nasıl davranıyor?",
+        answer: "✅ Beklenen cevap:\n\nHava muhtemelen FIRTINALI / YAĞMURLU / RÜZGÂRLI olacak.\n\nİpuçları (en az 2 tane yeterli):\n• Ağaçlar sallanıyor → kuvvetli rüzgâr\n• İnsanlar şemsiye açıyor → yağmur yaklaşıyor\n• Kediler saçağa kaçıyor → hayvanlar tehlike sezdi\n• Karanlık bulutlar → yağmur işareti\n\nMetin direkt 'fırtına olacak' demiyor ama tüm bu işaretler bizi bu sonuca götürüyor."
+      },
+      {
+        difficulty: "hard",
+        text: "Metni oku:\n\n«Emir, doğum günü partisine arkadaşı Can'ı çağırmadı. Pazartesi günü teneffüste Can yalnız oturuyordu. Emir yanından geçti, selam vermedi. Can defterini açtı ama bir şey yazmadı, sadece kalemini tuttu.»\n\nBu metinden çıkarabileceğin İKİ farklı çıkarım yaz. Her birini metindeki bir ipucuyla açıkla.",
+        hint: "Hem Emir'in hem de Can'ın davranışlarına bak. İlişkileri hakkında ne söyleyebilirsin? Can'ın duyguları ne olabilir?",
+        answer: "✅ Olası çıkarımlar (örnek):\n\n1) Emir ve Can'ın arası bozuk olabilir.\n   → İpucu: «Selam vermedi», «doğum gününe çağırmadı»\n\n2) Can çok üzülmüş ve bu yüzden derse odaklanamıyor.\n   → İpucu: «Defterini açtı ama yazmadı», «yalnız oturuyordu»\n\n3) Can dışlanmış hissediyor olabilir.\n   → İpucu: «Yalnız oturuyordu», «sadece kalemini tuttu»\n\n💡 Günlük hayat bağlantısı: Bir arkadaşının davranışlarından nasıl hissettiğini anlayabilmek, EMPATİ becerisidir. Sınıfta yalnız oturan birini gördüğünde yanına gitmek de bu beceriyi kullanmak demektir."
+      }
+    ]
+  },
+  {
+    code: "T.O.5.14",
+    area: "okuma",
+    areaLabel: "OKUMA",
+    title: "Öyküleyici metinlerdeki hikâye unsurlarını belirleme (kim, nerede, ne zaman, ne oldu)",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "Metni oku:\n\n«Geçen yaz tatilinde Selin, dedesinin köyüne gitti. Bir sabah erkenden bahçeye çıktı. Orada yaralı bir serçe buldu. Onu eve götürüp kanadını tedavi etti.»\n\nHikâyenin KAHRAMANI kim? Olay NEREDE geçiyor?\n\nA) Selin – şehirde\nB) Dede – bahçede\nC) Selin – dedesinin köyünde\nD) Serçe – kafeste",
+        hint: "Hikâyenin baş kişisi kimdir? Olay hangi mekânda yaşanıyor?",
+        answer: "✅ Doğru cevap: C) Selin – dedesinin köyünde\n\nHikâyenin temel unsurları:\n• Kahraman (kişi): Selin\n• Mekân (yer): Dedesinin köyü, bahçe\n• Zaman: Geçen yaz, bir sabah\n• Olay: Yaralı serçe bulup tedavi etmesi"
+      },
+      {
+        difficulty: "medium",
+        text: "Aşağıdaki kısa hikâyeyi oku ve hikâye unsurlarını TABLO halinde doldur:\n\n«Bir akşam, kütüphanede çalışan Mehmet, raflar arasında garip bir ses duydu. Korkmadan sesin geldiği yere gitti. Bir kedi yavrusu kitapların arkasına sıkışmıştı. Mehmet onu kurtardı.»\n\nKim:\nNerede:\nNe zaman:\nNe oldu (kısa):",
+        hint: "Her unsuru metinden tek bir kelime/cümleyle bul.",
+        answer: "✅ Cevaplar:\n\nKim: Mehmet (ve kedi yavrusu)\nNerede: Kütüphane / raflar arasında\nNe zaman: Bir akşam\nNe oldu: Mehmet, raflara sıkışmış kedi yavrusunu kurtardı.\n\n💡 Bu dört soruya cevap verebiliyorsan hikâyenin ana unsurlarını anlamışsın demektir."
+      },
+      {
+        difficulty: "hard",
+        text: "Aşağıdaki hikâyeyi oku:\n\n«Pazar sabahı parka giden Zeynep, oyun parkında bir cüzdan buldu. İçinde para ve bir fotoğraf vardı. Hemen güvenliğe götürdü. Akşam, sahibi gelip teşekkür etti, Zeynep'e küçük bir hediye verdi.»\n\nBu hikâyeyi 3 BÖLÜME ayır:\n• SERİM (giriş): \n• DÜĞÜM (gelişme): \n• ÇÖZÜM (sonuç): \n\nHer bölümü 1 cümleyle yaz.",
+        hint: "Serim = olay nerede/ne zaman/kim ile başlıyor.\nDüğüm = problem ya da olay ne?\nÇözüm = sonuç nasıl bitti?",
+        answer: "✅ Beklenen cevap:\n\n• SERİM: Pazar sabahı Zeynep parka gitti.\n• DÜĞÜM: Oyun parkında para ve fotoğraf olan bir cüzdan buldu, ne yapacağına karar vermesi gerekiyordu.\n• ÇÖZÜM: Cüzdanı güvenliğe götürdü; sahibi gelince teşekkür etti ve Zeynep'e hediye verdi.\n\n💡 Günlük hayat bağlantısı: Senin de okuduğun hikâyeler ya da izlediğin filmler hep bu üç bölümden oluşur. Hatta günlük hayatındaki olayları (mesela 'sabah kahvaltıda olanlar') anlatırken bile bu yapıyı kullanırsın!"
+      }
+    ]
+  },
+  {
+    code: "T.O.5.16",
+    area: "okuma",
+    areaLabel: "OKUMA",
+    title: "Bilgilendirici metinde anahtar kelimeleri belirleme",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "Aşağıdaki paragrafın ANAHTAR KELİMESİ hangisidir?\n\n«Su, canlıların yaşaması için en önemli maddedir. Bitkiler suyla büyür, hayvanlar su içer, insanlar suyla temizlenir. Susuz bir hayat düşünülemez.»\n\nA) Bitki\nB) İnsan\nC) Su\nD) Hayat",
+        hint: "Paragrafta en çok hangi kelime geçiyor ve metin neyi anlatıyor?",
+        answer: "✅ Doğru cevap: C) Su\n\nAnahtar kelime, metnin TAMAMINI özetleyen kelimedir. Bu metin baştan sona suyu anlatıyor. «Su» kelimesi metinde 4 defa geçiyor. Bu yüzden anahtar kelimedir."
+      },
+      {
+        difficulty: "medium",
+        text: "Aşağıdaki paragrafı oku ve ÜÇ anahtar kelime belirle:\n\n«Geri dönüşüm, çevreyi korumanın en önemli yollarından biridir. Plastik, kâğıt ve cam atıkları ayrı kutulara atmalıyız. Bu atıklar tekrar işlenip yeni ürünlere dönüşür. Böylece doğa daha az kirlenir.»",
+        hint: "Bu paragraf bir şeyin önemini anlatıyor. O şey ve onunla ilgili önemli kavramlar neler?",
+        answer: "✅ Anahtar kelimeler:\n\n1) Geri dönüşüm\n2) Atık (plastik/kâğıt/cam)\n3) Çevre / doğa\n\nBu üç kelime metnin ana fikrini anlamak için yeterlidir.\n\nNot: «Plastik, kâğıt, cam» de doğru cevap olarak kabul edilir çünkü atık türlerini ifade ediyorlar."
+      },
+      {
+        difficulty: "hard",
+        text: "Aşağıdaki paragrafı oku:\n\n«Antarktika, dünyanın en soğuk kıtasıdır. Buzullarla kaplıdır ve burada penguenler yaşar. Bilim insanları yıllardır Antarktika'da iklim araştırmaları yapıyor. Çünkü buzulların erimesi, dünyadaki tüm denizleri etkiler.»\n\n1) 4 anahtar kelime belirle.\n2) Metnin KONUSUNU bu anahtar kelimeleri kullanarak TEK CÜMLEYLE özetle.",
+        hint: "Anahtar kelimeleri bulduktan sonra onları cümle içinde birleştirebilirsin. «...bilim insanları...iklim...buzul...» gibi.",
+        answer: "✅ Beklenen cevap:\n\n1) Anahtar kelimeler (örnek):\n   • Antarktika\n   • Buzul\n   • Bilim insanları / araştırma\n   • İklim / deniz seviyesi\n\n2) Konu özeti (örnek):\n   «Bilim insanlarının Antarktika'da yaptığı buzul ve iklim araştırmaları, dünyanın denizleri için önemlidir.»\n\n💡 Günlük hayat bağlantısı: Bir habere ya da Wikipedia yazısına baktığında en sık geçen kelimeleri bul → işte konuyu o anladın demektir. Bu, bilgi okuryazarlığının temelidir."
+      }
+    ]
+  },
+  {
+    code: "T.O.5.20",
+    area: "okuma",
+    areaLabel: "OKUMA",
+    title: "Metindeki söz sanatlarını belirleme (benzetme, kişileştirme)",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "Aşağıdaki cümlelerden hangisinde KİŞİLEŞTİRME vardır?\n\n(Kişileştirme: insan olmayana insan özelliği vermek)\n\nA) Kuşlar gökyüzünde uçuyor.\nB) Çiçekler bahçede açtı.\nC) Rüzgâr kulağıma bir şarkı fısıldadı.\nD) Yağmur sabaha kadar yağdı.",
+        hint: "İnsan dışı varlıkların hangisinde insan gibi davranan biri var? «Fısıldamak» hangi varlığa ait bir özellik?",
+        answer: "✅ Doğru cevap: C) Rüzgâr kulağıma bir şarkı fısıldadı.\n\n«Fısıldamak» insanlara ait bir eylemdir. Bu cümlede rüzgâra insan özelliği verilmiş, yani KİŞİLEŞTİRME yapılmış.\n\nDiğer şıklar gerçek olayları anlatıyor, söz sanatı yok."
+      },
+      {
+        difficulty: "medium",
+        text: "Aşağıdaki cümlelerde BENZETME (teşbih) yapan kelimeleri ve neye benzetildiğini bul:\n\n1) «Kar tanesi pamuk gibi yumuşaktı.»\n2) «Saçları altın gibi parlıyordu.»\n3) «Sesi bülbül kadar güzel.»",
+        hint: "«Gibi» ve «kadar» kelimeleri benzetmenin işaretidir. Önce bu kelimeleri bul, sonra ne neye benzetilmiş?",
+        answer: "✅ Cevaplar:\n\n1) «Kar tanesi» → «pamuk» a benzetilmiş.\n   (Yumuşaklık özelliği yönünden)\n\n2) «Saçlar» → «altın» a benzetilmiş.\n   (Parlaklık özelliği yönünden)\n\n3) «Ses» → «bülbül» e benzetilmiş.\n   (Güzellik özelliği yönünden)\n\n💡 Benzetme yapmanın amacı: Anlatımı daha güçlü ve etkileyici hâle getirmek. «Kar yumuşaktı» yerine «kar pamuk gibi yumuşaktı» daha çarpıcı."
+      },
+      {
+        difficulty: "hard",
+        text: "Aşağıdaki şiir parçasını oku:\n\n«Ay gökyüzünde yalnız bir çocuk gibi ağlıyordu.\nYıldızlar onu teselli etmek için göz kırpıyordu.\nGece, sessizce ona kucak açtı.»\n\n1) Şiirde KAÇ tane söz sanatı vardır?\n2) Her birini bul ve TÜRÜNÜ söyle (benzetme mi, kişileştirme mi?).",
+        hint: "Her satırda ay, yıldız ve gece için yapılan eylemleri tek tek incele. Hangileri insan eylemi? Hangileri benzetme?",
+        answer: "✅ Cevaplar:\n\n1) Şiirde TOPLAM 4 söz sanatı vardır.\n\n2) Tek tek inceleyelim:\n\n   • «Ay... yalnız bir çocuk gibi» → BENZETME (Ay çocuğa benzetilmiş)\n   • «Ay... ağlıyordu» → KİŞİLEŞTİRME (Aya insan duygusu verilmiş)\n   • «Yıldızlar... göz kırpıyordu» → KİŞİLEŞTİRME (Yıldızlara insan eylemi)\n   • «Gece... kucak açtı» → KİŞİLEŞTİRME (Geceye insan eylemi)\n\n💡 Günlük hayat bağlantısı: Şarkı sözlerine, reklam afişlerine, kitap kapaklarına dikkat et — söz sanatları her yerde! «Akıllı telefon», «soğuk savaş», «tatlı dil» gibi günlük ifadeler bile söz sanatı içerir."
+      }
+    ]
+  },
+  {
+    code: "T.O.5.23",
+    area: "okuma",
+    areaLabel: "OKUMA",
+    title: "Okuduğunu özetleyebilme",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "Aşağıdaki paragrafın en iyi ÖZETİ hangisidir?\n\n«Arılar çiçeklerden bal yapar. Bunun için tarladan tarlaya uçarlar. Bal yapma sürecinde çiçeklerin tozlaşmasına da yardım ederler. Bu sayede meyveler oluşur.»\n\nA) Arılar çiçeklerden hoşlanır.\nB) Arılar bal yapar ve çiçek tozlaşmasını sağlar.\nC) Meyveler arılardan oluşur.\nD) Tarlalarda çok arı vardır.",
+        hint: "Özet, metindeki EN ÖNEMLİ iki bilgiyi içermeli. Hangi şık her iki bilgiyi de barındırıyor?",
+        answer: "✅ Doğru cevap: B) Arılar bal yapar ve çiçek tozlaşmasını sağlar.\n\nİyi bir özet:\n• Metnin ana fikrini taşır\n• Ayrıntıları atar, özü tutar\n• Kısa ve nettir\n\nA, C, D şıkları metnin bir parçasını yanlış aktarıyor."
+      },
+      {
+        difficulty: "medium",
+        text: "Aşağıdaki metni 2-3 cümlede ÖZETLE:\n\n«Köpekbalıkları tehlikeli sanılır ama aslında çoğu insanı yemez. Dünyada 500'den fazla köpekbalığı türü vardır. Bunların sadece birkaçı insanlara saldırır. Köpekbalıkları okyanusun temizleyicileridir, çünkü ölü hayvanları yerler. Bu yüzden onlar olmadan denizler dengesini kaybeder.»",
+        hint: "Önce kendine sor: Bu metin ana olarak ne anlatıyor? «Köpekbalıkları aslında ___» ile başlayabilirsin.",
+        answer: "✅ Örnek özet:\n\n«Köpekbalıkları korkulduğu kadar tehlikeli değildir. 500'den fazla türü olmasına rağmen sadece birkaçı insanlara saldırır. Köpekbalıkları, ölü hayvanları yiyerek okyanusu temizler ve deniz dengesini korur.»\n\n💡 Özet kuralları:\n• Kendi cümlelerinle yaz (kopyalama!)\n• Sayılar ve örnekler önemli ise koru\n• Tekrar eden bilgileri çıkar\n• Sıralamayı koru"
+      },
+      {
+        difficulty: "hard",
+        text: "Aşağıdaki haberi okudun:\n\n«Geçtiğimiz hafta İstanbul'da düzenlenen Çocuk Kitap Fuarı'na 50 binden fazla çocuk katıldı. Fuarda 200 yazar imza günü düzenledi. Çocuklar yazarlarla tanışma, kitap okuma atölyelerine katılma fırsatı buldu. Etkinlikler 5 gün sürdü. Bakanlık, gelecek yıl fuarın iki katı büyüklükte olacağını duyurdu.»\n\n1) Haberi 1 CÜMLEYLE özetle (manşet gibi).\n2) 3 cümleyle daha geniş bir özet yaz.",
+        hint: "Manşet için: 'Ne oldu, kim katıldı?' 1 cümlede.\nGeniş özet için: ne olmuş + nasıl geçmiş + sonuç ne?",
+        answer: "✅ Beklenen cevaplar:\n\n1) Manşet özeti (örnek):\n«İstanbul'da düzenlenen Çocuk Kitap Fuarı'na 50 binden fazla çocuk katıldı.»\n\n2) Geniş özet (örnek):\n«Geçen hafta İstanbul'da düzenlenen Çocuk Kitap Fuarı, 5 gün sürdü ve 50 binden fazla çocuğu ağırladı. Etkinlikte 200 yazar imza günü yaptı, çocuklar atölyelere katıldı. Bakanlık, fuarın gelecek yıl iki katına çıkacağını açıkladı.»\n\n💡 Günlük hayat bağlantısı: Bir filmi/dizi bölümünü arkadaşına anlatırken kısa özet yaparsın. Bu beceri sınavlarda paragraf sorularını anlamak için de çok değerli."
+      }
+    ]
+  },
+
+  // ============ DİNLEME/İZLEME ============
+  {
+    code: "T.D.5.5",
+    area: "dinleme",
+    areaLabel: "DİNLEME / İZLEME",
+    title: "Dinlediğinin/izlediğinin yüzey anlamını belirleyebilme",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "Öğretmenin sınıfta şu yönergeyi söylediğini düşün:\n\n«Çocuklar, yarın okula getireceğiniz şeyler: kalem kutusu, matematik kitabı, beden eğitimi tişörtü ve su şişesi. Defter getirmeyi UNUTMAYIN.»\n\nYarın getirilmesi gereken kaç farklı eşya vardır?\n\nA) 3\nB) 4\nC) 5\nD) 6",
+        hint: "Yönergede sayılan tüm eşyaları parmaklarınla say. «Unutmayın» kelimesinden önce de bir eşya var mı?",
+        answer: "✅ Doğru cevap: C) 5\n\nYönergede sayılanlar:\n1. Kalem kutusu\n2. Matematik kitabı\n3. Beden eğitimi tişörtü\n4. Su şişesi\n5. Defter (\"unutmayın\" denilen)\n\nDinlerken NOT ALMAK, sayıları ve listeleri kaçırmamak için çok yararlıdır."
+      },
+      {
+        difficulty: "medium",
+        text: "Bir belgeselde şu cümleyi duydun:\n\n«Pandalar Çin'de yaşar. Günde 12 saat bambu yerler. Yetişkin bir panda günde 20 kilo bambu tüketir. Maalesef pandalar nesli tehlike altında olan bir türdür.»\n\nDinlediğine göre aşağıdaki sorulara cevap ver:\n\n1) Pandalar nerede yaşar?\n2) Günde kaç saat yemek yerler?\n3) Pandaların durumu nedir?",
+        hint: "Her cümleyi tek tek hatırla. Sayılar ve yer isimleri önemli ipuçları.",
+        answer: "✅ Cevaplar:\n\n1) Pandalar ÇİN'de yaşar.\n2) Günde 12 SAAT bambu yerler.\n3) Pandalar NESLİ TEHLİKE ALTINDA olan bir türdür.\n\n💡 Belgesel ya da podcast dinlerken bilgileri kaçırmamak için: önemli sayıları, yer/kişi isimlerini bir kâğıda yaz!"
+      },
+      {
+        difficulty: "hard",
+        text: "Bir radyo haberinde şu cümleler geçti:\n\n«İstanbul'da bugün öğleden sonra hava sıcaklığı 28 dereceye ulaştı. Akşam saatlerinde sağanak yağış bekleniyor. Yarın hava bulutlu olacak ve sıcaklık 5 derece düşecek. Salı günü ise tekrar güneşli olacak.»\n\n1) Bugün İstanbul'da hava sıcaklığı kaç derece?\n2) Yarınki sıcaklık tahmini kaç derece?\n3) Salı günü hava nasıl olacak?",
+        hint: "Sıcaklık matematiği var: 28 - 5 = ? Yarınki sıcaklığı bu işlemle bulabilirsin.",
+        answer: "✅ Cevaplar:\n\n1) Bugün hava sıcaklığı 28 DERECE.\n\n2) Yarın sıcaklık 5 derece düşeceği için:\n   28 - 5 = 23 DERECE\n\n3) Salı günü hava GÜNEŞLİ olacak.\n\n💡 Günlük hayat bağlantısı: Hava durumu dinlerken sadece duymak yeterli değil — anlamak ve çıkarım yapmak gerekiyor. «Yarın yağmurlu, şemsiyemi alayım» kararı bu beceriyle alınır."
+      }
+    ]
+  },
+  {
+    code: "T.D.5.4",
+    area: "dinleme",
+    areaLabel: "DİNLEME / İZLEME",
+    title: "Anlamını bilmediği kelimelerin anlamını dinlerken tahmin edebilme",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "Bir çizgi filmde şu cümleyi duydun:\n\n«Kahramanımız MAHCUP bir şekilde başını öne eğdi, yanakları kıpkırmızı oldu.»\n\n«Mahcup» ne anlama gelir?\n\nA) Sinirli\nB) Utangaç / utanmış\nC) Mutlu\nD) Yorgun",
+        hint: "«Başını öne eğdi» ve «yanakları kıpkırmızı oldu» — bu davranışları ne zaman yapar insan?",
+        answer: "✅ Doğru cevap: B) Utangaç / utanmış\n\nİpuçları:\n• Başını öne eğmek → utanma davranışı\n• Yanakların kızarması → utanma belirtisi\n\n«Mahcup» kelimesini bilmesen bile, çevresindeki ipuçlarından anlamını çıkarabildin. Buna BAĞLAMDAN ANLAM ÇIKARMA denir."
+      },
+      {
+        difficulty: "medium",
+        text: "Bir hikâye dinliyorsun:\n\n«Kahraman uzun yolculuktan sonra çok BİTKİN düşmüştü. Adımlarını zor atıyor, gözleri kapanıyordu. En yakın hana sığınıp uyumak istedi.»\n\n1) «Bitkin» ne anlama gelir?\n2) Bu kelimeyi anlamana yardım eden 2 ipucunu yaz.",
+        hint: "Kahraman ne yapıyor? Hangi davranışları «bitkin» kelimesini açıklıyor?",
+        answer: "✅ Cevaplar:\n\n1) «Bitkin» = ÇOK YORGUN, takatsiz, halsiz anlamına gelir.\n\n2) İpuçları (en az 2 tane):\n   • «Adımlarını zor atıyor»\n   • «Gözleri kapanıyordu»\n   • «Uzun yolculuktan sonra»\n   • «Uyumak istedi»\n\n💡 Yeni kelimeleri sözlükten bakmadan önce bağlamdan tahmin etmeye çalış. Bu hem hızlandırır hem de kelime hazneni geliştirir."
+      },
+      {
+        difficulty: "hard",
+        text: "Bir podcast'te şu cümleleri duydun:\n\n«Bilim insanı yıllar süren araştırmasından sonra MUVAFFAK oldu. Buluşunu dünyaya duyurdu, herkes alkışladı. Ona ödüller verildi.»\n\n1) «Muvaffak» ne anlama gelir?\n2) Bunu hangi ipuçlarından anladın? (en az 2 tane)\n3) «Muvaffak» yerine kullanabileceğin 2 eş anlamlı kelime yaz.",
+        hint: "Cümlenin sonu ne anlatıyor? Buluş + alkış + ödül = ne?",
+        answer: "✅ Cevaplar:\n\n1) «Muvaffak» = BAŞARILI olmak anlamına gelir.\n\n2) İpuçları:\n   • «Buluşunu dünyaya duyurdu» → bir başarı var\n   • «Herkes alkışladı» → olumlu sonuç\n   • «Ödüller verildi» → başarının kanıtı\n\n3) Eş anlamlı kelimeler (örnek):\n   • Başarılı\n   • Mağrur (kullanım az)\n   • Galip\n\n💡 Günlük hayat bağlantısı: «Muvaffak» Osmanlıca kökenli, biraz eski bir kelime. Ama bazı haberlerde, edebiyat metinlerinde hâlâ duyabilirsin. Kelime hazneni genişletmek seni iyi bir okuyucu/dinleyici yapar."
+      }
+    ]
+  },
+
+  // ============ KONUŞMA ============
+  {
+    code: "T.K.5.8",
+    area: "konusma",
+    areaLabel: "KONUŞMA",
+    title: "Hazırlıksız konuşma yapabilme",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "Hazırlıksız konuşmada DİKKAT EDİLMESİ GEREKEN bir özellik AŞAĞIDAKİLERDEN HANGİSİDİR?\n\nA) Hızlı hızlı konuşmak ve nefes almamak\nB) Konuyu dağıtmadan, anlaşılır cümleler kurmak\nC) Sürekli yere bakmak\nD) «Eee, ııı» gibi sesleri çok kullanmak",
+        hint: "Hazırlıksız konuşma da bir konuşmadır — dinleyenin anlaması önemlidir. Hangi davranış bunu kolaylaştırır?",
+        answer: "✅ Doğru cevap: B) Konuyu dağıtmadan, anlaşılır cümleler kurmak\n\nİyi bir hazırlıksız konuşmada:\n• Net cümleler kurulur\n• Konu dağıtılmaz\n• Göz teması kurulur\n• «Eee, ııı» dolduruları azaltılır\n• Nefes ayarlanır"
+      },
+      {
+        difficulty: "medium",
+        text: "Sınıfta öğretmen sana şu konuyu verip 1 dakika konuşmanı istedi:\n\n«EN SEVDİĞİN MEVSİM HANGİSİ, NEDEN?»\n\nKonuşmana başlarken hangi 3 ŞEYİ söylemen iyi olur? (Sırasıyla yaz)",
+        hint: "1) Önce ne söylersin (giriş)? 2) Sonra ne anlatırsın (gelişme)? 3) Nasıl bitirirsin (sonuç)?",
+        answer: "✅ Beklenen cevap:\n\n1) GİRİŞ: Hangi mevsimi sevdiğini söyle.\n   Örn: «Benim en sevdiğim mevsim ilkbahardır.»\n\n2) GELİŞME: NEDENlerini sırala (en az 2 sebep).\n   Örn: «Çünkü hava ne çok soğuk ne çok sıcak. Çiçekler açar, kuşlar öter.»\n\n3) SONUÇ: Toparlayıcı bir cümle.\n   Örn: «Bu yüzden ilkbahar bana mutluluk verir.»\n\n💡 Hazırlıksız konuşmada GİRİŞ-GELİŞME-SONUÇ planı seni kurtarır. Birkaç saniye düşün, sonra başla."
+      },
+      {
+        difficulty: "hard",
+        text: "Aşağıdaki konulardan birini seç ve hazırlıksız konuşma için ZİHİN HARİTASI çıkar (yazılı plan):\n\nKonular:\n1) Teknolojinin hayatımıza etkileri\n2) Kitap okumanın faydaları\n3) Hayvan sevgisi\n\nPlan oluştururken şunları yaz:\n• Ana fikir (1 cümle)\n• Yardımcı fikirler (3 madde)\n• Örnek (1 örnek)\n• Sonuç cümlesi",
+        hint: "Önce konuyu seç. Sonra «Bu konuda söylemek istediğim 3 şey ne?» diye düşün. Her birine bir örnek bul.",
+        answer: "✅ Örnek plan (Konu: Kitap okumanın faydaları):\n\n• ANA FİKİR:\n«Kitap okumak hem zekayı hem hayal gücünü geliştirir.»\n\n• YARDIMCI FİKİRLER:\n1. Kelime hazinemizi geliştirir.\n2. Hayal gücümüzü besler.\n3. Bizi farklı dünyalara götürür.\n\n• ÖRNEK:\n«Geçen yaz okuduğum 'Define Adası' kitabıyla kendimi bir korsan gemisinde hissettim.»\n\n• SONUÇ CÜMLESİ:\n«Bu yüzden her gün en az 20 dakika kitap okumalıyız.»\n\n💡 Günlük hayat bağlantısı: Sınıf başkanlığı için aday olduğunda, doğum gününde teşekkür konuşması yaptığında, tanışma toplantısında kendini tanıttığında HEP bu plana ihtiyacın olacak."
+      }
+    ]
+  },
+  {
+    code: "T.K.5.22",
+    area: "konusma",
+    areaLabel: "KONUŞMA",
+    title: "Konuşmasını zenginleştirecek biçimde söz varlığı kullanabilme (eş/zıt anlamlı, deyim, atasözü)",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "«Çok yorgunum.» cümlesini DAHA RENKLİ söylemek istiyorsun. Aşağıdakilerden hangisi en uygundur?\n\nA) Çok az yorgunum.\nB) Çok yorgunum demek istemedim.\nC) Bitkin düştüm, ayakta duramayacağım.\nD) Yorgunluk hissediyorum.",
+        hint: "Hangi şıkta «çok yorgun» yerine daha betimleyici, etkileyici ifade var?",
+        answer: "✅ Doğru cevap: C) Bitkin düştüm, ayakta duramayacağım.\n\n«Bitkin düşmek» bir DEYİM. «Ayakta duramayacağım» abartmalı bir ifade. İkisi birlikte konuşmayı çok daha güçlü ve etkileyici yapıyor.\n\nDeyimler ve betimleyici ifadeler konuşmana renk katar."
+      },
+      {
+        difficulty: "medium",
+        text: "Aşağıdaki cümleleri DAHA ETKİLEYİCİ söyle. Eş anlamlı kelime, deyim veya atasözü kullan:\n\n1) «Çok mutluyum.» → \n2) «Sabırlı olmak iyi.» →\n3) «Çok korktum.»  →",
+        hint: "1) Mutlu = ? (sevinçli, neşeli...)\n2) «Sabırlı olmak» için bir atasözü hatırlıyor musun?\n3) «Korkmak» için bir deyim ne olabilir?",
+        answer: "✅ Örnek cevaplar:\n\n1) «Çok mutluyum» → «Sevinçten havalara uçuyorum.» / «Mutluluktan içim içime sığmıyor.»\n\n2) «Sabırlı olmak iyi» → «Sabreden derviş muradına ermiş.» / «Sabır acıdır, meyvesi tatlıdır.»\n\n3) «Çok korktum» → «Yüreğim ağzıma geldi.» / «Tüylerim diken diken oldu.»\n\n💡 Bu ifadeler konuşmanı iki katı etkili yapar. Atasözleri ve deyimler dilimizin hazinesidir!"
+      },
+      {
+        difficulty: "hard",
+        text: "Bir arkadaşın okul gezisine katılamadığı için üzgün. Onu TESELLİ etmek için BİR KISA KONUŞMA yap.\n\nKonuşmanda:\n• En az 1 deyim\n• En az 1 atasözü\n• En az 1 eş anlamlı kelime kullan\n\n(Yaklaşık 4-5 cümle)",
+        hint: "Önce empati kur (\"seni anlıyorum\" gibi). Sonra umut ver. Atasözü olarak \"Her şerden bir hayır doğar\" ya da \"Geç olsun güç olmasın\" kullanabilirsin.",
+        answer: "✅ Örnek konuşma:\n\n«Seni çok iyi anlıyorum, geziye katılamadığın için MORALİN BOZUK. Ama unutma, HER İŞTE BİR HAYIR VARDIR. Belki gelecek seferki gezi daha güzel olur. Şimdi ÜZGÜN olmak yerine bir sonrakine motive olalım. KEDERLENME, gelecek seferi birlikte planlayalım, olur mu?»\n\nAnaliz:\n• Deyim: «Moralin bozuk»\n• Atasözü: «Her işte bir hayır vardır»\n• Eş anlamlı: Üzgün = Kederli\n\n💡 Günlük hayat bağlantısı: Empati ve teselli, sosyal-duygusal becerinin temelidir. Bir arkadaşı destekleyebilmek HAYAT BOYU işine yarayacak en değerli beceridir."
+      }
+    ]
+  },
+
+  // ============ YAZMA ============
+  {
+    code: "T.Y.5.7",
+    area: "yazma",
+    areaLabel: "YAZMA",
+    title: "Yaratıcı yazı yazabilme",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "Aşağıdaki cümleyi DAHA YARATICI hâle getir:\n\n«Bahçede bir kedi vardı.»\n\nİpucu: kedinin nasıl olduğunu, ne yaptığını ekle.\n\nA) Bahçede gri bir kedi vardı.\nB) Bahçede minik, beyaz tüylü bir kedi, kelebeğin peşinden koşuyordu.\nC) Bahçedeki kedi.\nD) Kedi vardı bahçede.",
+        hint: "Hangi cümlede daha çok detay ve hareket var? Görsel oluşturabiliyor musun?",
+        answer: "✅ Doğru cevap: B) Bahçede minik, beyaz tüylü bir kedi, kelebeğin peşinden koşuyordu.\n\nYaratıcı yazıda:\n• SIFAT (minik, beyaz tüylü) → görsel oluşturur\n• EYLEM (koşuyordu) → hareket katar\n• DETAY (kelebeğin peşinden) → sahneyi canlandırır\n\nSadece «kedi vardı» demek okuyucunun zihninde bir şey oluşturmaz."
+      },
+      {
+        difficulty: "medium",
+        text: "Aşağıdaki başlangıç cümlesini kullanarak 3 cümlelik kısa bir hikâye yaz:\n\n«Pencereyi açtığımda hiç beklemediğim bir şey gördüm...»\n\nHikâyende şunlar olmalı:\n• Olayın geçtiği yer\n• En az 1 sıfat (renk, boyut, his)\n• Bir sürpriz / şaşırtıcı olay",
+        hint: "İlk cümleden sonra «Bir...vardı» ile devam edebilirsin. Olağanüstü bir şey hayal et: uçan bir araba? Konuşan bir kuş?",
+        answer: "✅ Örnek hikâye:\n\n«Pencereyi açtığımda hiç beklemediğim bir şey gördüm. Bahçemizdeki KOCAMAN ceviz ağacının dalına TURUNCU tüylü bir baykuş konmuştu. Beni gördüğünde alçak bir sesle 'iyi sabahlar' dedi ve kanat çırpıp gözden kayboldu.»\n\nAnaliz:\n• Yer: Bahçedeki ceviz ağacı\n• Sıfatlar: Kocaman, turuncu tüylü\n• Sürpriz: Konuşan baykuş\n\n💡 Yaratıcı yazıda «en olağan şeyi olağanüstü hâle getir» kuralı vardır. Sıradan kediyi konuşturarak, sıradan günü maceraya dönüştürebilirsin."
+      },
+      {
+        difficulty: "hard",
+        text: "Aşağıdaki 3 nesneyi kullanarak BİR HİKÂYE yaz:\n\n• ESKİ BİR ANAHTAR\n• YAĞMURLU BİR GECE\n• KONUŞAN BİR KUŞ\n\nHikâyende SERİM-DÜĞÜM-ÇÖZÜM bölümleri olmalı (toplam 6-8 cümle).\n\nİsmin neler söyleyeceği önemli — hayal gücünü kullan!",
+        hint: "Serim: kim, nerede, ne zaman? (yağmurlu gece, evde, anahtar bulma)\nDüğüm: anahtar nereye ait? Kuş ne diyor?\nÇözüm: ne keşfedildi?",
+        answer: "✅ Örnek hikâye:\n\nSERİM:\n«Yağmurlu bir gecede dedemin tavan arasını temizliyordum. Tozlu bir sandığın içinde gümüş renkli, ESKİ BİR ANAHTAR buldum. Üzerinde küçük yıldız işareti vardı.»\n\nDÜĞÜM:\n«Tam o sırada pencerenin yanına KÜÇÜK BİR KUŞ kondu ve şaşırtıcı bir şey söyledi: 'O anahtar yıldız bahçesinin kapısını açar.' Kuşun gözleri parlıyordu.»\n\nÇÖZÜM:\n«Ertesi sabah dedeme anahtarı sordum. Gülümsedi, beni bahçenin köşesindeki saklı bir bölmeye götürdü. Anahtar oraya uyuyordu! İçinde dedemin çocukluk hatıralarını sakladığı bir kutu vardı. O gece kuşu bir daha hiç görmedim.»\n\n💡 Günlük hayat bağlantısı: Yaratıcı yazma sadece edebiyat değil — Instagram paylaşımlarında, blog yazılarında, hatta okul ödevlerinde fark yaratır. Hayal gücün senin süper gücün!"
+      }
+    ]
+  },
+  {
+    code: "T.Y.5.21",
+    area: "yazma",
+    areaLabel: "YAZMA",
+    title: "Yazım kuralları ve noktalama işaretlerini uygulayabilme",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "Aşağıdaki cümlelerden hangisinde NOKTALAMA İŞARETİ yanlış kullanılmıştır?\n\nA) Bugün okula gittim, dersleri sevdim.\nB) Aaa! Çok güzelmiş.\nC) Sen nerede oturuyorsun.\nD) İstanbul, Türkiye'nin en büyük şehridir.",
+        hint: "Soru cümlesinin sonuna hangi işaret konur?",
+        answer: "✅ Doğru cevap: C) Sen nerede oturuyorsun.\n\nDoğrusu: «Sen nerede oturuyorsun?»\n\nSoru cümlelerinin sonuna SORU İŞARETİ (?) konur. Diğer şıklarda noktalama doğru kullanılmış."
+      },
+      {
+        difficulty: "medium",
+        text: "Aşağıdaki cümlede 5 noktalama hatası ve 2 yazım hatası var. BUL ve DÜZELT:\n\n«ali bugün okula gitti çok mutluydu çünkü doğum günüydü annesi ona pasta yapacaktı yarın da arkadaşları gelecekti onu çok seviyorum»",
+        hint: "Cümle nasıl başlar? Birden fazla cümle var mı? Ünlem ve nokta nereye gerekli? Özel isim nasıl yazılır?",
+        answer: "✅ Düzeltilmiş hâli:\n\n«Ali bugün okula gitti. Çok mutluydu çünkü doğum günüydü. Annesi ona pasta yapacaktı, yarın da arkadaşları gelecekti. Onu çok seviyorum!»\n\nDüzeltmeler:\n1. «ali» → «Ali» (özel isim büyük harfle başlar)\n2. «gitti çok» arasına NOKTA\n3. «doğum günüydü annesi» arasına NOKTA\n4. «yapacaktı yarın» arasına VİRGÜL\n5. «gelecekti onu» arasına NOKTA\n6. Cümle başında özne büyük harfle: «Onu»\n7. Sonda ÜNLEM (duygu yoğunluğu için)\n\n💡 Noktalama işaretleri trafiğin kuralları gibidir — onlarsız okuyucu kaybolur."
+      },
+      {
+        difficulty: "hard",
+        text: "Aşağıdaki paragrafı YAZIM ve NOKTALAMA bakımından düzelt:\n\n«geçen yıl ankarada amcamlara gittik 5 gün kaldık çok eğlendik amcam beni anıtkabire götürdü atatürkün hayatını anlattı geri döndüğümüzde annem nasıl geçti diye sordu hepsini anlatım»\n\nDüzelttiğin hâlini yaz, sonra kaç hata bulduğunu belirt.",
+        hint: "Şehir isimleri büyük harfle başlar. Ek alırken (Ankara'da) kesme işareti kullanılır. Özel isimlerin tümünü gözden geçir.",
+        answer: "✅ Düzeltilmiş hâli:\n\n«Geçen yıl Ankara'da amcamlara gittik. 5 gün kaldık, çok eğlendik. Amcam beni Anıtkabir'e götürdü, Atatürk'ün hayatını anlattı. Geri döndüğümüzde annem 'Nasıl geçti?' diye sordu, hepsini anlattım.»\n\nDüzeltilen hatalar (yaklaşık 10):\n\n1. «geçen» → «Geçen» (cümle başı)\n2. «ankarada» → «Ankara'da» (özel isim + kesme)\n3. «gittik 5» arasına NOKTA\n4. «kaldık çok» arasına VİRGÜL\n5. «eğlendik amcam» arasına NOKTA\n6. «amcam» → «Amcam» (cümle başı)\n7. «anıtkabire» → «Anıtkabir'e»\n8. «atatürkün» → «Atatürk'ün»\n9. «sordu» → diyalog için tırnak işareti\n10. «anlatım» → «anlattım» (yazım hatası)\n\n💡 Günlük hayat bağlantısı: WhatsApp mesajlarında bile noktalama olmadan «yarin gelmiyorum yorgunum» yazılınca anlam karışır. Doğru yazmak SAYGI göstergesidir."
+      }
+    ]
+  },
+  {
+    code: "T.Y.5.3",
+    area: "yazma",
+    areaLabel: "YAZMA",
+    title: "Yazıda içerik ve yapıya yönelik seçimleri yönetebilme (paragraf-metin yapısı)",
+    questions: [
+      {
+        difficulty: "easy",
+        text: "Bir yazıda HANGİ SIRAYLA bölümler olmalıdır?\n\nA) Sonuç → Gelişme → Giriş\nB) Gelişme → Sonuç → Giriş\nC) Giriş → Gelişme → Sonuç\nD) Hangi sırada olduğu önemli değil",
+        hint: "Bir hikâye nasıl başlar, nasıl gelişir, nasıl biter? Yazılı metinler de aynı yapıyı izler.",
+        answer: "✅ Doğru cevap: C) Giriş → Gelişme → Sonuç\n\nHer iyi metin 3 bölümden oluşur:\n• GİRİŞ: Konuyu tanıt, dikkat çek\n• GELİŞME: Ana fikri ve örnekleri ver\n• SONUÇ: Toparla, kapanış cümlesi yaz\n\nBu yapı KOMPOZİSYON yazımının temelidir."
+      },
+      {
+        difficulty: "medium",
+        text: "Aşağıdaki cümleleri DOĞRU SIRAYA koy ki bir paragraf oluşsun:\n\n1) Sonuç olarak, sağlıklı yaşamak için spor şarttır.\n2) Spor, hem bedeni hem zihni güçlendirir.\n3) Mesela her gün 30 dakika yürüyüş yapmak bile kalp sağlığını korur.\n4) Spor yapmak insan hayatında çok önemlidir.\n\nDoğru sırayı yaz: ___ → ___ → ___ → ___",
+        hint: "Hangi cümle GENEL/giriş cümlesi? Hangisi ÖRNEK veriyor? Hangisi SONUÇ cümlesi («Sonuç olarak» diye başlayan)?",
+        answer: "✅ Doğru sıra:\n\n4 → 2 → 3 → 1\n\nAçıklama:\n• 4. cümle → GİRİŞ (konuyu tanıtıyor)\n• 2. cümle → GELİŞME (ana fikri açıyor)\n• 3. cümle → ÖRNEK (gelişmeyi destekliyor)\n• 1. cümle → SONUÇ («Sonuç olarak» ifadesi sondadır)\n\n💡 Sıralama, paragrafın anlaşılır olmasını sağlar. Her cümle bir öncekiyle bağlantılı olmalı."
+      },
+      {
+        difficulty: "hard",
+        text: "«TEKNOLOJİNİN ÖĞRENCİLERE FAYDALARI» konulu bir paragraf yaz.\n\nKurallar:\n• 5-7 cümle\n• Giriş, gelişme, sonuç bölümleri belli olsun\n• En az 1 ÖRNEK ver\n• En az 1 BAĞLAÇ kullan (çünkü, ayrıca, ancak, mesela...)\n• Kendi yazını yaz, hazır şablon kullanma!",
+        hint: "1. cümle: Teknoloji ___ etkili. 2-3. cümle: Hangi yönden? Mesela...? 4. cümle: Ayrıca... 5. cümle: Sonuç olarak...",
+        answer: "✅ Örnek paragraf:\n\n«Teknoloji, öğrencilerin hayatında pek çok kolaylık sağlamıştır. (GİRİŞ) Çünkü internet sayesinde bilgiye ulaşmak artık çok hızlıdır. Mesela bir ödev için kütüphaneye gitmeden binlerce makaleye ulaşabiliriz. (ÖRNEK) Ayrıca eğitim videoları ve uygulamalar, anlamadığımız konuları tekrar tekrar dinlememizi sağlar. (GELİŞME) Sonuç olarak, teknoloji doğru kullanıldığında öğrencilerin en güçlü yardımcısıdır. (SONUÇ)»\n\nKontrol listesi:\n✓ 5 cümle var\n✓ Giriş-gelişme-sonuç belirgin\n✓ Örnek var (ödev için araştırma)\n✓ Bağlaçlar: çünkü, ayrıca, mesela, sonuç olarak\n\n💡 Günlük hayat bağlantısı: Bu beceri sınav kompozisyonlarında, blog yazılarında, sosyal medya paylaşımlarında, hatta iş hayatında raporlarda hep işine yarayacak. İYİ YAZMAK = İYİ DÜŞÜNMEK demektir."
+      }
+    ]
+  }
+];
+
+// ============= APP =============
+const grid = document.getElementById('kazanimGrid');
+const overlay = document.getElementById('modalOverlay');
+const modalContent = document.getElementById('modalContent');
+let currentFilter = 'all';
+
+function getCompleted() {
+  try {
+    return JSON.parse(localStorage.getItem('completed') || '[]');
+  } catch { return []; }
+}
+
+function setCompleted(arr) {
+  try { localStorage.setItem('completed', JSON.stringify(arr)); } catch {}
+}
+
+function toggleCompleted(code) {
+  const c = getCompleted();
+  const i = c.indexOf(code);
+  if (i > -1) c.splice(i, 1); else c.push(code);
+  setCompleted(c);
+  renderGrid();
+  renderProgress();
+  // Modal güncelle
+  if (document.getElementById('modal-done-btn')) {
+    const btn = document.getElementById('modal-done-btn');
+    btn.textContent = c.includes(code) ? '✓ Tamamlandı' : '○ Tamamla';
+    btn.classList.toggle('active', c.includes(code));
+  }
+}
+
+function renderProgress() {
+  const total = KAZANIMLAR.length;
+  const done = getCompleted().filter(c => KAZANIMLAR.some(k => k.code === c)).length;
+  const pct = total ? Math.round((done / total) * 100) : 0;
+  document.getElementById('totalCount').textContent = total;
+  document.getElementById('doneCount').textContent = done;
+  document.getElementById('percentCount').textContent = pct + '%';
+}
+
+function resetProgress() {
+  if (confirm('Tüm ilerlemeni sıfırlamak istediğine emin misin?')) {
+    setCompleted([]);
+    renderGrid();
+    renderProgress();
+  }
+}
+
+function filterArea(area, btn) {
+  currentFilter = area;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid();
+}
+
+function renderGrid() {
+  const completed = getCompleted();
+  const filtered = currentFilter === 'all'
+    ? KAZANIMLAR
+    : KAZANIMLAR.filter(k => k.area === currentFilter);
+
+  grid.innerHTML = filtered.map(k => `
+    <div class="kazanim-card ${completed.includes(k.code) ? 'completed' : ''}" 
+         data-area="${k.area}" 
+         onclick="openModal('${k.code}')">
+      <span class="kazanim-tag">${k.areaLabel}</span>
+      <div class="kazanim-code">${k.code}</div>
+      <div class="kazanim-title">${k.title}</div>
+    </div>
+  `).join('');
+}
+
+function openModal(code) {
+  const k = KAZANIMLAR.find(x => x.code === code);
+  if (!k) return;
+  const completed = getCompleted();
+  const isDone = completed.includes(code);
+
+  modalContent.innerHTML = `
+    <button class="close-btn" onclick="closeModal()">×</button>
+    <div class="modal-header">
+      <span class="kazanim-tag" style="background: var(--ink); color: var(--accent);">${k.areaLabel}</span>
+      <div class="modal-code">${k.code}</div>
+      <div class="modal-title">${k.title}</div>
+    </div>
+
+    ${k.questions.map((q, i) => `
+      <div class="question">
+        <span class="difficulty-tag ${q.difficulty}">
+          ${q.difficulty === 'easy' ? '🟢 KOLAY' : q.difficulty === 'medium' ? '🟡 ORTA' : '🔴 ZOR'}
+        </span>
+        <div class="question-text">${q.text}</div>
+        <div class="actions">
+          <button class="btn hint" onclick="toggleReveal('hint-${code}-${i}')">💡 İpucu</button>
+          <button class="btn answer" onclick="toggleReveal('ans-${code}-${i}')">✓ Cevabı Gör</button>
+        </div>
+        <div class="reveal hint-box" id="hint-${code}-${i}">
+          <strong>İPUCU:</strong><br>${q.hint}
+        </div>
+        <div class="reveal answer-box" id="ans-${code}-${i}">
+          ${q.answer.replace(/\n/g, '<br>')}
+        </div>
+      </div>
+    `).join('')}
+
+    <div style="text-align: center; margin-top: 1rem;">
+      <button class="btn done ${isDone ? 'active' : ''}" id="modal-done-btn" onclick="toggleCompleted('${code}')">
+        ${isDone ? '✓ Tamamlandı' : '○ Tamamla'}
+      </button>
+    </div>
+  `;
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function toggleReveal(id) {
+  document.getElementById(id).classList.toggle('show');
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// Init
+renderProgress();
+renderGrid();
+</script>
+
+</body>
+</html>
